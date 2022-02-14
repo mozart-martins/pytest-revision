@@ -20,3 +20,8 @@ def test_mensagem_fixa():
 )
 def test_varias_mensagens(mensagem, resultado):
     assert Programa.hello_world(mensagem) == resultado
+
+
+@mark.xfail
+def test_xfail():
+    assert False
