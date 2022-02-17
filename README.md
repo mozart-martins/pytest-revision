@@ -172,6 +172,6 @@ Ou, pode se pedir para dar skip quando for Windows ou outra condição:
     def cartao():
 	    return Cartao(nome=fake.pystr())
 
-# Arquivo conftest
+# Arquivo conftest.py
 
 Serve para colocar itens de configuração como as fixtures.
