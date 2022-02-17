@@ -20,7 +20,7 @@ Para rodar todos menos os marcados com nome_da_tag, basta utilizar o comando pyt
 
 # Rodando o pytest
 
-pytest
+> pytest
 
 
 # Status das respostas
@@ -39,43 +39,43 @@ s = Pulou (skiped)
 
 # Rodando o pytest no modo verboso
 
-pytest -v
+> pytest -v
 
   
 
-# Rodando somente os testes com a palavra "foo"
+# Rodando somente os testes com a palavra "foo" no identificador
 
-pytest -k "foo"
+> pytest -k "foo"
 
   
 
 # Rodando o pytest com as saídas dos prints e do console
 
-pytest -s
+> pytest -s
 
   
 
 # Rodando o pytest no modo debug quando há erros
 
-pytest --pdb
+> pytest --pdb
 
   
 
 # Repetindo primeiro o que falhar (first to fail)
 
-pytest --ff
+> pytest --ff
 
   
 
 # Rodar novamente apenas os que falharam
 
-pytest --lf
+> pytest --lf
 
   
 
 # Relatório de teste no formato padrão (Junit)
 
-pytest --junitxml report.xml
+> pytest --junitxml report.xml
 
   
 
@@ -124,4 +124,54 @@ Ou, pode se pedir para dar skip quando for Windows ou outra condição:
 
     pytest --fixtures
 
+# Importando Fixtures
 
+> from pytest import fixtures
+
+# Fixture simples de exemplo
+
+    @fixture(scope='function')
+    def veiculo():
+	    return Veiculo()
+
+    def test_veiculo_eh_novo(veiculo):
+	    assert veiculo.situacao == 'Novo'
+
+# Scopos de uma fixture
+
+ - Function;
+ - Class;
+ - Module;
+ - Package; e
+ - Session.
+
+# Fixtures compostas
+
+    @fixture
+    def  instancia_programa():
+    	return Programa("Programa Legal", 1.0)
+    
+    def  test_nome_do_programa(instancia_programa):
+    	assert instancia_programa.nome ==  "Programa Legal"
+    
+    @fixture
+    def  instancia_programa_versao_dois(instancia_programa):
+    	instancia_programa.versao =  2.0
+    	return instancia_programa
+    
+    def  test_versao_dois_programa(instancia_programa_versao_dois):
+    	assert instancia_programa_versao_dois.versao ==  2.0
+
+# Criando dados aleatórios
+
+    from fake import Fake
+    
+    fake = Fake()
+    
+    @fixture
+    def cartao():
+	    return Cartao(nome=fake.pystr())
+
+# Arquivo conftest
+
+Serve para colocar itens de configuração como as fixtures.
