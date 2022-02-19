@@ -22,6 +22,8 @@ Para rodar todos menos os marcados com nome_da_tag, basta utilizar o comando pyt
 
 > pytest
 
+*Lembrando que todos os arquivos e funções de teste devem começar com a palavra test_
+
 
 # Status das respostas
 
